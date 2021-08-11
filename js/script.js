@@ -89,7 +89,7 @@ function creditCardValidation(){
             creditCardNum.parentNode.classList.remove("valid");
             creditCardNum.parentNode.classList.add("not-valid");
             creditCardNum.parentElement.lastElementChild.innerHTML = 'Credit card field must be filled it!';
-            creditCardNum.parentElement.lastElementChild.style.display = "inline" 
+            creditCardNum.parentElement.lastElementChild.style.display = "inline"; 
             validCreditCardNum = false;   
         } 
         //Zip code validation
@@ -210,11 +210,11 @@ for(let i=0; i < activityCheckBoxes.length; i++) {
     // Blur event
     activityCheckBoxes[i].addEventListener('blur', () =>{
         activityCheckBoxes[i].parentElement.classList.remove('focus');
-    })
+    });
     // Focus event
     activityCheckBoxes[i].addEventListener('focus', () =>{
         activityCheckBoxes[i].parentElement.classList.add('focus');
-    })
+    });
 }
 
 //*** Event listener to prevent attendee from double booking workshops ***/
@@ -237,7 +237,7 @@ regForActivities.addEventListener('click', e => {
             activityCheckBoxes[i].parentNode.className = "";
         }
     }
-})
+});
 
 //* Realtime validation of credit card number *//
 creditCardNum.addEventListener('keyup', e => {
@@ -248,13 +248,13 @@ creditCardNum.addEventListener('keyup', e => {
 
         if(e.target.value.length == "") {
             creditCardNum.parentElement.lastElementChild.innerHTML = 'Credit card field must be filled it!';
-            creditCardNum.parentElement.lastElementChild.style.display = "inline"   
+            creditCardNum.parentElement.lastElementChild.style.display = "inline";   
         } else if (e.target.value.length < 13) {
             e.target.parentElement.lastElementChild.innerHTML = 'Credit card number must be between 13-16 digits!';
-            e.target.parentElement.lastElementChild.style.display = "inline"
+            e.target.parentElement.lastElementChild.style.display = "inline";
         } else if (e.target.value.length > 16) {
             e.target.parentElement.lastElementChild.innerHTML = 'Credit card number must not be more than 16 digits!';
-            e.target.parentElement.lastElementChild.style.display = "inline"
+            e.target.parentElement.lastElementChild.style.display = "inline";
         }  
         validCreditCardNum = false;
     }  // If input is valid
@@ -266,4 +266,4 @@ creditCardNum.addEventListener('keyup', e => {
         validCreditCardNum = true;
         console.log(validCreditCardNum);
     }
-})
+});
