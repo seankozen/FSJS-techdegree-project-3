@@ -106,7 +106,7 @@ function creditCardValidation(){
     } 
 }
 
-/* Job Role Event Listener */
+//********* Job Role Event Listener *********//
 jobRole.addEventListener('change', e => {
 
     // To display job role 'other' field
@@ -117,7 +117,7 @@ jobRole.addEventListener('change', e => {
     }
 });
 
-/*  Shirt Style Event Listener */
+//*********  Shirt Style Event Listener *********//
 shirtDesign.addEventListener('change', e => {
     let themeSelected;                          // Variable for theme selected
     let colorThemeOption = shirtColor.children; // Variable for color theme children
@@ -141,7 +141,7 @@ shirtDesign.addEventListener('change', e => {
     shirtColor.disabled = false;
 });
 
-/* Event listener to calculate cost for activities*/
+//********* Event listener to calculate cost for activities *********//
 regForActivities.addEventListener('change', e => {
     let dataCost =  e.target.getAttribute('data-cost');
 
@@ -162,7 +162,7 @@ bitcoin.hidden = true;
 paymentSelect.children[1].setAttribute('selected', true);
 
 
-/* Event listener for payment type selection */
+//******** Event listener for payment type selection ********//
 paymentSelect.addEventListener('change', e => {
 
     if(e.target.value === 'credit-card'){
@@ -205,7 +205,7 @@ regForm.addEventListener('submit', e => {
 
 });
 
-/*** Accessibility for activities (blur & focus events) ***/
+//*** Accessibility for activities (blur & focus events) ***//
 for(let i=0; i < activityCheckBoxes.length; i++) {
     // Blur event
     activityCheckBoxes[i].addEventListener('blur', () =>{
@@ -217,21 +217,23 @@ for(let i=0; i < activityCheckBoxes.length; i++) {
     });
 }
 
-//*** Event listener to prevent attendee from double booking workshops ***/
+//*** Event listener to prevent attendee from double booking workshops ***//
 regForActivities.addEventListener('click', e => {
     let workshopTime = e.target.getAttribute('data-day-and-time');
     //Loop through workshops
     for(let i = 0; i < activityCheckBoxes.length; i++){
         let checkedWsTime = activityCheckBoxes[i].getAttribute('data-day-and-time');
         if(e.target.checked){
+            // Disable conflicting workshop
             if(workshopTime === checkedWsTime && e.target !== activityCheckBoxes[i]) {
                 activityCheckBoxes[i].disabled = true;
                 activityCheckBoxes[i]. parentNode.classList.add("disabled");
             } else if (workshopTime !== checkedWsTime && activityCheckBoxes[i].disabled === true){
-                activityCheckBoxes[i].disabled = true;
+                activityCheckBoxes[i].disabled = true; // Keep conflicting workshop disabled
             } else {
-                activityCheckBoxes[i].diabled = false;
+                activityCheckBoxes[i].diabled = false; // Keep non-conflicting workshop active
             }
+        // Keep selected checked    
         } else if (workshopTime === checkedWsTime && !e.target.checked) {
             activityCheckBoxes[i].disabled = false;
             activityCheckBoxes[i].parentNode.className = "";
@@ -239,7 +241,7 @@ regForActivities.addEventListener('click', e => {
     }
 });
 
-//* Realtime validation of credit card number *//
+//******* Realtime validation of credit card number *******//
 creditCardNum.addEventListener('keyup', e => {
     // If input is not valid
     if(creditCardCheck.test(e.target.value) === false) {
