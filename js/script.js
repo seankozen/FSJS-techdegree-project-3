@@ -27,7 +27,6 @@ const creditCardCheck = /^\d{13,16}?$/;                            //  Variable 
 const cvvCheck = /^\d{3}?$/;                                       //  Variable for regex for cvv validation
 const zipCheck = /^\d{5}?$/;                                       //  Variable for regex for zip code validation
 
-
 /* Focus on name */
 nameInput.focus();
 
@@ -141,7 +140,6 @@ shirtDesign.addEventListener('change', e => {
     //  Display color options
     shirtColor.disabled = false;
 });
-
 
 /* Event listener to calculate cost for activities*/
 regForActivities.addEventListener('change', e => {
