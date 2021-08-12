@@ -18,7 +18,7 @@ const ccCvv = document.getElementById('cvv');                      //  Get credi
 const regForm = document.querySelector('form');                    //  Get form element     
 
 let totalCost = 0;                                                 //  Variable for total cost of activities
-let validCreditCardNum;                                            //  Variable for cc number authentication (boolean)
+let validPayment;                                                  //  Variable for cc number authentication (boolean)
 
 const nameCheck = /^[a-zA-Z]/;                                     //  Variable for regex for name validation
 // Variable for regex for email validation
@@ -90,20 +90,22 @@ function creditCardValidation(){
             creditCardNum.parentNode.classList.add("not-valid");
             creditCardNum.parentElement.lastElementChild.innerHTML = 'Credit card field must be filled it!';
             creditCardNum.parentElement.lastElementChild.style.display = "inline"; 
-            validCreditCardNum = false;   
+            validPayment = false;   
         } 
         //Zip code validation
         validZip = validateInput(zipCode, zipCheck); 
         
         // CVV validation
         validCvv = validateInput(ccCvv, cvvCheck); 
+
+        if(validPayment === false || validZip === false || validCvv === false){
+            return false;
+        } 
+    } else if (paymentSelect.value === 'bitcoin' || paymentSelect.value === 'paypal') {
+        return true;
     }
 
-    if(validCreditCardNum === false || validZip === false || validCvv === false){
-        return false;
-    } else {
-        return true;
-    } 
+    
 }
 
 //********* Job Role Event Listener *********//
@@ -258,14 +260,14 @@ creditCardNum.addEventListener('keyup', e => {
             e.target.parentElement.lastElementChild.innerHTML = 'Credit card number must not be more than 16 digits!';
             e.target.parentElement.lastElementChild.style.display = "inline";
         }  
-        validCreditCardNum = false;
+        validPayment = false;
     }  // If input is valid
     else {
         creditCardNum.parentNode.classList.remove("not-valid");
         creditCardNum.classList.remove("error-border");
         creditCardNum.parentNode.classList.add("valid");
         creditCardNum.parentElement.lastElementChild.style.display = 'none';
-        validCreditCardNum = true;
-        console.log(validCreditCardNum);
+        validPayment = true;
+        console.log(validPayment);
     }
 });
